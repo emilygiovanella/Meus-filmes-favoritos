@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CineStream — Meus Filmes Favoritos</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar">
+    <div class="navbar__left">
+      <button class="hamburger" id="menuToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <a href="#" class="logo">
+        <svg class="logo__icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="36" height="36" rx="8" fill="#E50914"/>
+          <polygon points="13,10 28,18 13,26" fill="#fff"/>
+        </svg>
+        <span class="logo__text">CineStream</span>
+      </a>
+    </div>
+
+    <div class="navbar__center">
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Pesquisar filmes..." autocomplete="off" />
+        <button class="search-btn" aria-label="Buscar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="navbar__right">
+      <button class="icon-btn" aria-label="Notificações">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+        </svg>
+      </button>
+      <div class="avatar">E</div>
+    </div>
+  </header>
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar__nav">
+      <a href="#" class="sidebar__item active">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+        <span>Início</span>
+      </a>
+      <a href="#" class="sidebar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+        </svg>
+        <span>Em Cartaz</span>
+      </a>
+      <a href="#" class="sidebar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+        <span>Favoritos</span>
+      </a>
+      <a href="#" class="sidebar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <span>Histórico</span>
+      </a>
+      <hr class="sidebar__divider"/>
+      <p class="sidebar__label">Categorias</p>
+      <a href="#" class="sidebar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+        <span>Aventura</span>
+      </a>
+      <a href="#" class="sidebar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
+        </svg>
+        <span>Comédia</span>
+      </a>
+      <a href="#" class="sidebar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <span>Ação</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main" id="mainContent">
+
+    <!-- MODAL PLAYER -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal">
+        <button class="modal__close" id="modalClose" aria-label="Fechar">&#10005;</button>
+        <div class="modal__player">
+          <iframe
+            id="modalIframe"
+            src=""
+            title="Player de Filme"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="modal__info">
+          <h2 id="modalTitle"></h2>
+          <div class="modal__meta">
+            <span id="modalYear"></span>
+            <span id="modalRating"></span>
+            <span id="modalGenre"></span>
+          </div>
+          <p id="modalDesc"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- HERO BANNER -->
+    <section class="hero" id="heroBanner">
+      <div class="hero__overlay"></div>
+      <img
+        class="hero__bg"
+        src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3e/Descendants_%282015_film%29_poster.jpg/220px-Descendants_%282015_film%29_poster.jpg"
+        alt="Descendentes"
+      />
+      <div class="hero__content">
+        <span class="hero__badge">Destaque</span>
+        <h1 class="hero__title">Descendentes</h1>
+        <p class="hero__desc">
+          Os filhos dos maiores vilões da Disney recebem uma chance de redenção quando são convidados para estudar em Auradon — o reino dos heróis. Mas a lealdade ao mal ainda pulsa em seus corações.
+        </p>
+        <div class="hero__actions">
+          <button class="btn btn--primary" onclick="openModal('vEa4g0prZj0','Descendentes','2015','★ 6.7 / 10','Aventura · Musical','Os filhos dos maiores vilões da Disney recebem uma chance de redenção quando são convidados para estudar em Auradon — o reino dos heróis. Mas a lealdade ao mal ainda pulsa em seus corações.')">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Assistir Trailer
+          </button>
+          <button class="btn btn--secondary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>
+            </svg>
+            Mais Informações
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FILTROS -->
+    <section class="filters-section">
+      <div class="filters" id="filterBtns">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="aventura">Aventura</button>
+        <button class="filter-btn" data-filter="comedia">Comédia</button>
+        <button class="filter-btn" data-filter="acao">Ação</button>
+        <button class="filter-btn" data-filter="musical">Musical</button>
+        <button class="filter-btn" data-filter="animacao">Animação</button>
+      </div>
+    </section>
+
+    <!-- GRADE DE FILMES -->
+    <section class="section">
+      <h2 class="section__title">Em Destaque</h2>
+      <div class="grid" id="movieGrid"></div>
+    </section>
+
+    <section class="section">
+      <h2 class="section__title">Continuar Assistindo</h2>
+      <div class="grid" id="continueGrid"></div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
